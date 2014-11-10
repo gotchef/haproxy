@@ -16,6 +16,7 @@ template "#{node['haproxy']['conf_dir']}/haproxy.cfg" do
   group "root"
   mode 0644
   variables(
+     :nginx_hosts => []
   )
   notifies :restart, "runit_service[haproxy]"
 end
