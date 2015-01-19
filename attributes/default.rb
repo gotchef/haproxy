@@ -3,12 +3,12 @@ default[:haproxy][:user] = "haproxy"
 default[:haproxy][:group] = "haproxy"
 default[:haproxy][:conf_dir] = '/etc/haproxy'
 
-default['haproxy']['package']['version'] = nil
+default[:haproxy][:package][:version] = nil
 
 default[:haproxy][:enable_stats] = true
-default[:haproxy][:stats_password] = 'changeme'
+default[:haproxy][:stats_password] = 'changeMe'
 default[:haproxy][:stats_url] = '/haproxy?stats'
-default[:haproxy][:stats_user] = 'hadmin'
+default[:haproxy][:stats_user] = 'admin'
 default[:haproxy][:check_interval] = '10s'
 
 default[:haproxy][:client_timeout] = '60s'
@@ -24,7 +24,3 @@ default[:haproxy][:stats_socket_path] = '/tmp/haproxy.sock'
 default[:haproxy][:stats_socket_level] = nil # nil for default or 'user', 'operator', 'admin'
 
 default[:haproxy][:balance] = 'roundrobin'
-
-default[:haproxy][:config][:template_cookbook] = 'haproxy'
-default[:haproxy][:nodes][:layers] = %w(nginx)
-

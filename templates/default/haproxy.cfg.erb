@@ -59,7 +59,7 @@ frontend main_http *:80
 #---------------------------------------------------------------------
 backend nginx_80
     balance     roundrobin
-        option httpchk GET /health HTTP/1.1\r\nHost:\ api.thumbling.net
+        option httpchk GET /health HTTP/1.1\r\nHost:\ example.com
 	<%- if @nginx_hosts %>
 		<%- @nginx_hosts.each_with_index do |host, idx| %>
 	server node<%=idx%> <%=host%>:80 check port 80
