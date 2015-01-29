@@ -7,10 +7,12 @@ provisioner:
 
 platforms:
   - name: ubuntu-12.04
+    driver:
+      box: hashicorp/precise64
   - name: centos-6.4
 
 suites:
   - name: default
     run_list:
-      - recipe[haproxy::default]
+      - recipe[haproxy::install, haproxy::service]
     attributes:

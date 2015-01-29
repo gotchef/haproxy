@@ -10,7 +10,7 @@ runit_service "haproxy" do
 end
 
 template "#{node['haproxy']['conf_dir']}/haproxy.cfg" do
-  cookbook default[:haproxy][:config][:template_cookbook]
+  cookbook node[:haproxy][:config][:template_cookbook]
   source "haproxy.cfg.erb"
   owner "root"
   group "root"
