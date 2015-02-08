@@ -4,6 +4,7 @@ default[:haproxy][:group] = "haproxy"
 default[:haproxy][:conf_dir] = '/etc/haproxy'
 
 default[:haproxy][:package][:version] = nil
+default[:haproxy][:config][:template_cookbook] = "haproxy"
 
 default[:haproxy][:enable_stats] = true
 default[:haproxy][:stats_password] = 'changeMe'
