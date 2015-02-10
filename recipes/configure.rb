@@ -11,7 +11,7 @@ end
 user = node[:haproxy][:service][:user]
 group = node[:haproxy][:service][:group]
 
-template "#{node[:haproxy][:serivce][:conf_dir]}/haproxy.cfg" do
+template "#{node[:haproxy][:service][:conf_dir]}/haproxy.cfg" do
 	cookbook node[:haproxy][:config][:template_cookbook]
 	source 'haproxy.cfg.erb'
 	owner user
