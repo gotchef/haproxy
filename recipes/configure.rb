@@ -1,24 +1,26 @@
 #
-# Configure HAProxy
+#  haproxy::configure
 #
 
 include_recipe 'runit'
 
-runit_service "haproxy" do
-  supports :restart => true, :status => true
-  action :nothing # only define so that it can be restarted if the config changed
+runit_service 'haproxy' do
+	action :nothing 
 end
 
-template "#{node['haproxy']['conf_dir']}/haproxy.cfg" do
-  cookbook node[:haproxy][:config][:template_cookbook]
-  source "haproxy.cfg.erb"
-  owner "root"
-  group "root"
-  mode 0644
-  variables(
-     :nginx_hosts => []
-  )
-  notifies :restart, "runit_service[haproxy]"
+user = node[:haproxy][:service][:user]
+group = node[:haproxy][:service][:group]
+
+template "#{node[:haproxy][:serivce][:conf_dir]}/haproxy.cfg" do
+	cookbook node[:haproxy][:config][:template_cookbook]
+	source 'haproxy.cfg.erb'
+	owner user
+	group group
+	mode 0644
+	variables(
+	:nginx_hosts => []
+	)
+	notifies :restart, 'runit_service[haproxy]'
 end
 
 

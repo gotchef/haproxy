@@ -1,5 +1,5 @@
 #
-# default.rb - empty
+# haproxy::default
 #
 
 # generally this recipe should not be used and instead wrapper cookbooks should

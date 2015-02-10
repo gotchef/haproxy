@@ -1,5 +1,9 @@
-include_recipe "runit"
+#
+# haproxy::stop
+#
 
-runit_service "haproxy" do
-  action :stop
+include_recipe 'runit'
+
+runit_service 'haproxy' do
+	action :stop
 end

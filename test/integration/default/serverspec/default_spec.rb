@@ -1,9 +1,6 @@
 
 require 'serverspec'
 
-# Required by serverspec
-#set :backend, :exec
-
 describe service('haproxy') do
   it { should be_running }
 end

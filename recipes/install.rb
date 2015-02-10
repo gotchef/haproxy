@@ -1,27 +1,28 @@
-package "haproxy" do
-  version node['haproxy']['package']['version'] if node['haproxy']['package']['version']
+# 
+# kaproxy::install
+#
+
+package 'haproxy' do
+  version node[:haproxy][:package][:version] if node[:haproxy][:package][:version]
 end
 
-group = node[:haproxy][:group]
-user = node[:haproxy][:user]
+user = node[:haproxy][:service][:user]
+group = node[:haproxy][:service][:group]
 
-# setup group
-group group do
-end
+group group 
 
-# setup user
 user user do
-  comment "Daemon"
-  gid group
-  shell "/bin/noshell"
-  supports :manage_home => false
+	comment 'created by chef'
+	gid group
+	supports :manage_home => false
+	system true
+	shell '/bin/noshell'
 end
 
-directory "#{node[:haproxy][:conf_dir]}" do
-	group group
+directory node[:haproxy][:service][:conf_dir] do
 	owner user
-	mode "0775"
-	action :create
+	group group
+	mode '0775'
 	recursive true
 end
 
