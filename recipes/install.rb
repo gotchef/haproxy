@@ -9,7 +9,9 @@ end
 user = node[:haproxy][:service][:user]
 group = node[:haproxy][:service][:group]
 
-group group 
+group group do
+	not_if { 'root' == group.to_s.downcase }
+end
 
 user user do
 	comment 'created by chef'
@@ -17,6 +19,7 @@ user user do
 	supports :manage_home => false
 	system true
 	shell '/bin/noshell'
+	not_if { 'root' == user.to_s.downcase }
 end
 
 directory node[:haproxy][:service][:conf_dir] do
